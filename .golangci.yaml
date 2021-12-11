@@ -29,12 +29,14 @@ linters:
     - gomnd
     - ifshort
     - interfacer
+    - ireturn
     - lll
     - maligned
     - paralleltest
     - scopelint
     - testpackage
     - wrapcheck
+    - varnamelen
 
 issues:
   exclude-use-default: false
