@@ -8,6 +8,18 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestIsTimeoutSkipped(t *testing.T) {
+	t.Parallel()
+
+	ctx := context.Background()
+
+	assert.False(t, IsTimeoutSkipped(ctx))
+
+	ctx = SkipTimeout(ctx)
+
+	assert.True(t, IsTimeoutSkipped(ctx))
+}
+
 func TestWithTimeout_NoCancel(t *testing.T) {
 	t.Parallel()
 
@@ -56,4 +68,19 @@ func TestWithTimeout_WithTimeout(t *testing.T) {
 
 	assert.NoError(t, ctx.Err())
 	assert.ErrorIs(t, newCtx.Err(), context.DeadlineExceeded)
+}
+
+func TestWithTimeout_WithTimeout_ButSkipped(t *testing.T) {
+	t.Parallel()
+
+	timeout := time.Millisecond * 50
+	ctx := SkipTimeout(context.Background())
+
+	newCtx, cancel := withTimeout(ctx, timeout)
+	defer cancel()
+
+	time.Sleep(timeout * 2)
+
+	assert.NoError(t, ctx.Err())
+	assert.NoError(t, newCtx.Err())
 }
