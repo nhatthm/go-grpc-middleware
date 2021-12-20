@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/test/bufconn"
 
 	"github.com/nhatthm/go-grpc-middleware/timeout"
@@ -28,7 +29,7 @@ func TestWithUnaryClientInterceptor(t *testing.T) {
 	}()
 
 	conn, err := grpc.Dial("",
-		grpc.WithInsecure(),
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithContextDialer(func(context.Context, string) (net.Conn, error) {
 			return buf.Dial()
 		}),
