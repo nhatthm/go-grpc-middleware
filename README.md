@@ -14,6 +14,7 @@
 - [Prerequisites](#prerequisites)
 - [Install](#install)
 - [Interceptors](#interceptors)
+    - [Ctxd Logger](#ctxd-logger)
     - [Timeout](#timeout)
 
 ## Prerequisites
@@ -31,6 +32,19 @@ go get github.com/nhatthm/go-grpc-middleware
 [<sub><sup>[table of contents]</sup></sub>](#table-of-contents)
 
 ## Interceptors
+
+### Ctxd Logger
+
+See [bool64/ctxd](https://github.com/bool64/ctxd)
+
+- Server middlewares
+  - `ctxd.UnaryServerInterceptor`
+  - `ctxd.StreamServerInterceptor`
+- Client middlewares
+  - `ctxd.UnaryClientInterceptor`
+  - `ctxd.StreamClientInterceptor`
+
+[<sub><sup>[table of contents]</sup></sub>](#table-of-contents)
 
 ### Timeout
 
