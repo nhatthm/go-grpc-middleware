@@ -9,7 +9,7 @@ require (
 	github.com/stretchr/testify v1.7.0
 	github.com/swaggest/assertjson v1.6.8
 	go.uber.org/zap v1.21.0
-	google.golang.org/grpc v1.44.0
+	google.golang.org/grpc v1.45.0
 )
 
 require (
