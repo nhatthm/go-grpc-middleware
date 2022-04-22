@@ -3,7 +3,7 @@ module github.com/nhatthm/go-grpc-middleware
 go 1.17
 
 require (
-	github.com/bool64/ctxd v1.1.2
+	github.com/bool64/ctxd v1.1.3
 	github.com/bool64/zapctxd v1.0.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/stretchr/testify v1.7.1
