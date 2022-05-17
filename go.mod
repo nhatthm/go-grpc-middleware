@@ -7,13 +7,13 @@ require (
 	github.com/bool64/zapctxd v1.0.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/stretchr/testify v1.7.1
-	github.com/swaggest/assertjson v1.6.8
+	github.com/swaggest/assertjson v1.7.0
 	go.uber.org/zap v1.21.0
 	google.golang.org/grpc v1.46.2
 )
 
 require (
-	github.com/bool64/shared v0.1.3 // indirect
+	github.com/bool64/shared v0.1.4 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/iancoleman/orderedmap v0.2.0 // indirect
