@@ -6,7 +6,7 @@ require (
 	github.com/bool64/ctxd v1.1.3
 	github.com/bool64/zapctxd v1.0.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
-	github.com/stretchr/testify v1.7.2
+	github.com/stretchr/testify v1.7.4
 	github.com/swaggest/assertjson v1.7.0
 	go.uber.org/zap v1.21.0
 	google.golang.org/grpc v1.47.0
