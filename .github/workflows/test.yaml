@@ -8,7 +8,7 @@ on:
 
 env:
   GO111MODULE: "on"
-  GO_LATEST_VERSION: "1.17.x"
+  GO_LATEST_VERSION: "1.19.x"
 
 jobs:
   test:
@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, macos-latest ]
-        go-version: [ 1.17.x ]
+        go-version: [ 1.18.x, 1.19.x ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Install Go
@@ -45,16 +45,9 @@ jobs:
         run: |
           make test
 
-      - name: Upload code coverage (unit)
+      - name: Upload code coverage
         if: matrix.go-version == env.GO_LATEST_VERSION
         uses: codecov/codecov-action@v3
         with:
           files: ./unit.coverprofile
           flags: unittests-${{ runner.os }}
-
-#      - name: Upload code coverage (features)
-#        if: matrix.go-version == env.GO_LATEST_VERSION
-#        uses: codecov/codecov-action@v1
-#        with:
-#          file: ./features.coverprofile
-#          flags: featurestests-${{ runner.os }}

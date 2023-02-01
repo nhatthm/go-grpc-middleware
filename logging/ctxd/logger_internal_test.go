@@ -98,8 +98,7 @@ func levelToZapLevel(level LogLevel) zapcore.Level {
 	return zapcore.InfoLevel
 }
 
-// nolint: unparam
-func assertLogMessage(t assert.TestingT, expected, actual string) bool {
+func assertLogMessage(t assert.TestingT, expected, actual string) bool { //nolint: unparam
 	if expected == "" {
 		if actual != "" {
 			t.Errorf("no message is expected, got %s", actual)
@@ -121,7 +120,7 @@ func assertLogMessage(t assert.TestingT, expected, actual string) bool {
 
 func contextWithDeadline(deadline time.Time) context.Context {
 	//goland:noinspection GoVetLostCancel
-	// nolint: govet
+	//nolint: govet
 	ctx, _ := context.WithDeadline(context.Background(), deadline)
 
 	return ctx

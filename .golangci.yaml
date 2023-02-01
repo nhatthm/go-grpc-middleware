@@ -42,7 +42,9 @@ issues:
   exclude-use-default: false
   exclude-rules:
     - linters:
+        - containedctx
         - dupl
+        - exhaustruct
         - funlen
         - goconst
         - goerr113

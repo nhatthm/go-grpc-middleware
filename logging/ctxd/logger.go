@@ -104,8 +104,7 @@ func WithMessageProducer(f MessageProducer) Option {
 }
 
 // DefaultCodeToLevel is the default implementation of gRPC return codes and interceptor log level for server side.
-// nolint: cyclop,dupl
-func DefaultCodeToLevel(code codes.Code) LogLevel {
+func DefaultCodeToLevel(code codes.Code) LogLevel { //nolint: cyclop,dupl
 	switch code {
 	case codes.OK:
 		return LogLevelInfo
@@ -147,8 +146,7 @@ func DefaultCodeToLevel(code codes.Code) LogLevel {
 }
 
 // DefaultClientCodeToLevel is the default implementation of gRPC return codes to log levels for client side.
-// nolint: cyclop,dupl
-func DefaultClientCodeToLevel(code codes.Code) LogLevel {
+func DefaultClientCodeToLevel(code codes.Code) LogLevel { //nolint: cyclop,dupl
 	switch code {
 	case codes.OK:
 		return LogLevelDebug
