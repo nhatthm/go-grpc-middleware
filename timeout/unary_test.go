@@ -25,7 +25,7 @@ func TestWithUnaryClientInterceptor(t *testing.T) {
 	defer srv.GracefulStop()
 
 	go func() {
-		_ = srv.Serve(buf) // nolint: errcheck
+		_ = srv.Serve(buf) //nolint: errcheck
 	}()
 
 	conn, err := grpc.Dial("",

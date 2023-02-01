@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/bool64/ctxd"
-	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	grpcMiddleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	"google.golang.org/grpc"
 )
 
@@ -54,7 +54,7 @@ func StreamServerInterceptor(logger ctxd.Logger, opts ...Option) grpc.StreamServ
 		startTime := time.Now()
 
 		ctx := serverLoggerContext(stream.Context(), info.FullMethod, startTime)
-		wrapped := grpc_middleware.WrapServerStream(stream)
+		wrapped := grpcMiddleware.WrapServerStream(stream)
 		wrapped.WrappedContext = ctx
 
 		err := handler(srv, wrapped)
