@@ -7,7 +7,7 @@ require (
 	github.com/bool64/zapctxd v1.0.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/stretchr/testify v1.8.2
-	github.com/swaggest/assertjson v1.8.0
+	github.com/swaggest/assertjson v1.8.1
 	go.uber.org/zap v1.24.0
 	google.golang.org/grpc v1.54.0
 )
