@@ -28,7 +28,7 @@ func TestWithUnaryClientInterceptor(t *testing.T) {
 		_ = srv.Serve(buf) //nolint: errcheck
 	}()
 
-	conn, err := grpc.Dial("",
+	conn, err := grpc.NewClient("passthrough://",
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithContextDialer(func(context.Context, string) (net.Conn, error) {
 			return buf.Dial()

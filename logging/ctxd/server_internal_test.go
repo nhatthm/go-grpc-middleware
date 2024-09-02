@@ -51,7 +51,7 @@ func TestUnaryServerInterceptor(t *testing.T) {
 		loggerLevel        LogLevel
 		options            []Option
 		handler            grpc.UnaryHandler
-		expectedResponse   interface{}
+		expectedResponse   any
 		expectedError      string
 		expectedLogMessage string
 	}{
@@ -64,7 +64,7 @@ func TestUnaryServerInterceptor(t *testing.T) {
 					return false
 				}),
 			},
-			handler: func(context.Context, interface{}) (interface{}, error) {
+			handler: func(context.Context, any) (any, error) {
 				return nil, status.Error(codes.Internal, "internal error")
 			},
 			expectedError: `rpc error: code = Internal desc = internal error`,
@@ -73,7 +73,7 @@ func TestUnaryServerInterceptor(t *testing.T) {
 			scenario:    "error is written when logger is set at warn",
 			context:     context.Background(),
 			loggerLevel: LogLevelWarn,
-			handler: func(context.Context, interface{}) (interface{}, error) {
+			handler: func(context.Context, any) (any, error) {
 				return nil, status.Error(codes.Internal, "internal error")
 			},
 			expectedError: `rpc error: code = Internal desc = internal error`,
@@ -95,7 +95,7 @@ func TestUnaryServerInterceptor(t *testing.T) {
 			scenario:    "no error when logger is set at info",
 			context:     context.Background(),
 			loggerLevel: LogLevelInfo,
-			handler: func(context.Context, interface{}) (interface{}, error) {
+			handler: func(context.Context, any) (any, error) {
 				return 42, nil
 			},
 			expectedResponse: 42,
@@ -116,7 +116,7 @@ func TestUnaryServerInterceptor(t *testing.T) {
 			scenario:    "with deadline",
 			context:     contextWithDeadline(time.Now().Add(time.Hour)),
 			loggerLevel: LogLevelInfo,
-			handler: func(context.Context, interface{}) (interface{}, error) {
+			handler: func(context.Context, any) (any, error) {
 				return 42, nil
 			},
 			expectedResponse: 42,
@@ -183,7 +183,7 @@ func TestStreamServerInterceptor(t *testing.T) {
 					return false
 				}),
 			},
-			handler: func(srv interface{}, stream grpc.ServerStream) error {
+			handler: func(any, grpc.ServerStream) error {
 				return status.Error(codes.Internal, "internal error")
 			},
 			expectedError: `rpc error: code = Internal desc = internal error`,
@@ -192,7 +192,7 @@ func TestStreamServerInterceptor(t *testing.T) {
 			scenario:    "error is written when logger is set at warn",
 			context:     context.Background(),
 			loggerLevel: LogLevelWarn,
-			handler: func(srv interface{}, stream grpc.ServerStream) error {
+			handler: func(any, grpc.ServerStream) error {
 				return status.Error(codes.Internal, "internal error")
 			},
 			expectedError: `rpc error: code = Internal desc = internal error`,
@@ -214,7 +214,7 @@ func TestStreamServerInterceptor(t *testing.T) {
 			scenario:    "no error when logger is set at info",
 			context:     context.Background(),
 			loggerLevel: LogLevelInfo,
-			handler: func(srv interface{}, stream grpc.ServerStream) error {
+			handler: func(any, grpc.ServerStream) error {
 				return nil
 			},
 			expectedLogMessage: `{
@@ -234,7 +234,7 @@ func TestStreamServerInterceptor(t *testing.T) {
 			scenario:    "with deadline",
 			context:     contextWithDeadline(time.Now().Add(time.Hour)),
 			loggerLevel: LogLevelInfo,
-			handler: func(srv interface{}, stream grpc.ServerStream) error {
+			handler: func(any, grpc.ServerStream) error {
 				return nil
 			},
 			expectedLogMessage: `{
