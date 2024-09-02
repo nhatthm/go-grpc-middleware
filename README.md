@@ -19,7 +19,7 @@
 
 ## Prerequisites
 
-- `Go >= 1.19`
+- `Go >= 1.21`
 
 [<sub><sup>[table of contents]</sup></sub>](#table-of-contents)
 

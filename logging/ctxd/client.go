@@ -24,7 +24,7 @@ func newClientLogger(log ctxd.Logger, opts ...Option) *logger {
 func UnaryClientInterceptor(logger ctxd.Logger, opts ...Option) grpc.UnaryClientInterceptor {
 	l := newClientLogger(logger, opts...)
 
-	return func(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+	return func(ctx context.Context, method string, req, reply any, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 		startTime := time.Now()
 
 		ctx = clientLoggerContext(ctx, method, startTime)

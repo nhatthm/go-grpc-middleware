@@ -21,7 +21,7 @@ func TestWithStreamClientInterceptors(t *testing.T) {
 	duration := time.Millisecond * 20
 	buf := bufconn.Listen(1024 * 1024)
 
-	conn, err := grpc.Dial("",
+	conn, err := grpc.NewClient("passthrough://",
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithContextDialer(func(context.Context, string) (net.Conn, error) {
 			return buf.Dial()

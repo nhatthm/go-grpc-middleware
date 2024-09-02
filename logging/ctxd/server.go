@@ -25,7 +25,7 @@ func newServerLogger(log ctxd.Logger, opts ...Option) *logger {
 func UnaryServerInterceptor(logger ctxd.Logger, opts ...Option) grpc.UnaryServerInterceptor {
 	l := newServerLogger(logger, opts...)
 
-	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+	return func(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
 		startTime := time.Now()
 
 		ctx = serverLoggerContext(ctx, info.FullMethod, startTime)
@@ -50,7 +50,7 @@ func UnaryServerInterceptor(logger ctxd.Logger, opts ...Option) grpc.UnaryServer
 func StreamServerInterceptor(logger ctxd.Logger, opts ...Option) grpc.StreamServerInterceptor {
 	l := newServerLogger(logger, opts...)
 
-	return func(srv interface{}, stream grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
+	return func(srv any, stream grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
 		startTime := time.Now()
 
 		ctx := serverLoggerContext(stream.Context(), info.FullMethod, startTime)

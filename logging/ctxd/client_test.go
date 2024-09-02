@@ -61,7 +61,7 @@ func TestUnaryClientInterceptor(t *testing.T) {
 					return false
 				}),
 			},
-			invoker: func(context.Context, string, interface{}, interface{}, *grpc.ClientConn, ...grpc.CallOption) error {
+			invoker: func(context.Context, string, any, any, *grpc.ClientConn, ...grpc.CallOption) error {
 				return status.Error(codes.Internal, "internal error")
 			},
 			expectedError: `rpc error: code = Internal desc = internal error`,
@@ -83,7 +83,7 @@ func TestUnaryClientInterceptor(t *testing.T) {
 			scenario:    "error is written when logger is set at warn",
 			context:     context.Background(),
 			loggerLevel: LogLevelWarn,
-			invoker: func(context.Context, string, interface{}, interface{}, *grpc.ClientConn, ...grpc.CallOption) error {
+			invoker: func(context.Context, string, any, any, *grpc.ClientConn, ...grpc.CallOption) error {
 				return status.Error(codes.Internal, "internal error")
 			},
 			expectedError: `rpc error: code = Internal desc = internal error`,
@@ -105,7 +105,7 @@ func TestUnaryClientInterceptor(t *testing.T) {
 			scenario:    "no error when logger is set at debug",
 			context:     context.Background(),
 			loggerLevel: LogLevelDebug,
-			invoker: func(context.Context, string, interface{}, interface{}, *grpc.ClientConn, ...grpc.CallOption) error {
+			invoker: func(context.Context, string, any, any, *grpc.ClientConn, ...grpc.CallOption) error {
 				return nil
 			},
 			expectedLogMessage: `{
@@ -125,7 +125,7 @@ func TestUnaryClientInterceptor(t *testing.T) {
 			scenario:    "with deadline",
 			context:     contextWithDeadline(time.Now().Add(time.Hour)),
 			loggerLevel: LogLevelDebug,
-			invoker: func(context.Context, string, interface{}, interface{}, *grpc.ClientConn, ...grpc.CallOption) error {
+			invoker: func(context.Context, string, any, any, *grpc.ClientConn, ...grpc.CallOption) error {
 				return nil
 			},
 			expectedLogMessage: `{
@@ -187,7 +187,7 @@ func TestStreamClientInterceptor(t *testing.T) {
 					return false
 				}),
 			},
-			handler: func(ctx context.Context, desc *grpc.StreamDesc, cc *grpc.ClientConn, method string, opts ...grpc.CallOption) (grpc.ClientStream, error) {
+			handler: func(context.Context, *grpc.StreamDesc, *grpc.ClientConn, string, ...grpc.CallOption) (grpc.ClientStream, error) {
 				return nil, status.Error(codes.Internal, "internal error")
 			},
 			expectedError: `rpc error: code = Internal desc = internal error`,
@@ -209,7 +209,7 @@ func TestStreamClientInterceptor(t *testing.T) {
 			scenario:    "error is written when logger is set at warn",
 			context:     context.Background(),
 			loggerLevel: LogLevelWarn,
-			handler: func(ctx context.Context, desc *grpc.StreamDesc, cc *grpc.ClientConn, method string, opts ...grpc.CallOption) (grpc.ClientStream, error) {
+			handler: func(context.Context, *grpc.StreamDesc, *grpc.ClientConn, string, ...grpc.CallOption) (grpc.ClientStream, error) {
 				return nil, status.Error(codes.Internal, "internal error")
 			},
 			expectedError: `rpc error: code = Internal desc = internal error`,
@@ -231,8 +231,8 @@ func TestStreamClientInterceptor(t *testing.T) {
 			scenario:    "no error when logger is set at debug",
 			context:     context.Background(),
 			loggerLevel: LogLevelDebug,
-			handler: func(ctx context.Context, desc *grpc.StreamDesc, cc *grpc.ClientConn, method string, opts ...grpc.CallOption) (grpc.ClientStream, error) {
-				return nil, nil
+			handler: func(context.Context, *grpc.StreamDesc, *grpc.ClientConn, string, ...grpc.CallOption) (grpc.ClientStream, error) {
+				return nil, nil //nolint: nilnil
 			},
 			expectedLogMessage: `{
     "level": "debug",
@@ -251,8 +251,8 @@ func TestStreamClientInterceptor(t *testing.T) {
 			scenario:    "with deadline",
 			context:     contextWithDeadline(time.Now().Add(time.Hour)),
 			loggerLevel: LogLevelDebug,
-			handler: func(ctx context.Context, desc *grpc.StreamDesc, cc *grpc.ClientConn, method string, opts ...grpc.CallOption) (grpc.ClientStream, error) {
-				return nil, nil
+			handler: func(context.Context, *grpc.StreamDesc, *grpc.ClientConn, string, ...grpc.CallOption) (grpc.ClientStream, error) {
+				return nil, nil //nolint: nilnil
 			},
 			expectedLogMessage: `{
     "level": "debug",

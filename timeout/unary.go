@@ -9,7 +9,7 @@ import (
 
 // UnaryClientTimeoutInterceptor automatically start a context with timeout if it is not set.
 func UnaryClientTimeoutInterceptor(duration time.Duration) grpc.UnaryClientInterceptor {
-	return func(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+	return func(ctx context.Context, method string, req, reply any, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 		ctx, cancel := withTimeout(ctx, duration)
 		defer cancel()
 
@@ -19,7 +19,7 @@ func UnaryClientTimeoutInterceptor(duration time.Duration) grpc.UnaryClientInter
 
 // UnaryClientSleepInterceptor automatically start a context with timeout if it is not set.
 func UnaryClientSleepInterceptor(duration time.Duration) grpc.UnaryClientInterceptor {
-	return func(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+	return func(ctx context.Context, method string, req, reply any, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 		time.Sleep(duration)
 
 		return invoker(ctx, method, req, reply, cc, opts...)
