@@ -6,7 +6,7 @@ toolchain go1.21.13
 
 require (
 	github.com/bool64/ctxd v1.2.1
-	github.com/bool64/zapctxd v1.1.1
+	github.com/bool64/zapctxd v1.2.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/stretchr/testify v1.9.0
 	github.com/swaggest/assertjson v1.9.0
