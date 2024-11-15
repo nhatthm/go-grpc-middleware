@@ -55,7 +55,7 @@ func StreamServerInterceptor(logger ctxd.Logger, opts ...Option) grpc.StreamServ
 
 		ctx := serverLoggerContext(stream.Context(), info.FullMethod, startTime)
 		wrapped := grpcMiddleware.WrapServerStream(stream)
-		wrapped.WrappedContext = ctx
+		wrapped.WrappedContext = ctx //nolint: fatcontext
 
 		err := handler(srv, wrapped)
 

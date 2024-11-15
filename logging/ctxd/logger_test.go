@@ -91,7 +91,6 @@ func TestDefaultCodeToLevel(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		t.Run(tc.code.String(), func(t *testing.T) {
 			t.Parallel()
 
@@ -182,7 +181,6 @@ func TestDefaultClientCodeToLevel(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		t.Run(tc.code.String(), func(t *testing.T) {
 			t.Parallel()
 
