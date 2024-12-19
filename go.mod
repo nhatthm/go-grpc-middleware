@@ -11,7 +11,7 @@ require (
 	github.com/stretchr/testify v1.10.0
 	github.com/swaggest/assertjson v1.9.0
 	go.uber.org/zap v1.27.0
-	google.golang.org/grpc v1.68.0
+	google.golang.org/grpc v1.69.2
 )
 
 require (
