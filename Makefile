@@ -2,7 +2,7 @@ MODULE_NAME = grpc-middleware
 
 VENDOR_DIR = vendor
 
-GOLANGCI_LINT_VERSION ?= v1.61.0
+GOLANGCI_LINT_VERSION ?= v1.64.7
 
 GO ?= go
 GOLANGCI_LINT ?= $(shell go env GOPATH)/bin/golangci-lint-$(GOLANGCI_LINT_VERSION)
@@ -13,6 +13,10 @@ GITHUB_OUTPUT ?= /dev/null
 $(VENDOR_DIR):
 	@mkdir -p $(VENDOR_DIR)
 	@$(GO) mod vendor
+
+.PHONY: update
+update:
+	@$(GO) get -u ./...
 
 .PHONY: tidy
 tidy:
