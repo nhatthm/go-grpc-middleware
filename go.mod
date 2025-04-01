@@ -2,6 +2,8 @@ module github.com/nhatthm/go-grpc-middleware
 
 go 1.23.0
 
+toolchain go1.24.1
+
 require (
 	github.com/bool64/ctxd v1.2.1
 	github.com/bool64/zapctxd v1.2.0
@@ -9,7 +11,7 @@ require (
 	github.com/stretchr/testify v1.10.0
 	github.com/swaggest/assertjson v1.9.0
 	go.uber.org/zap v1.27.0
-	google.golang.org/grpc v1.71.0
+	google.golang.org/grpc v1.71.1
 )
 
 require (
