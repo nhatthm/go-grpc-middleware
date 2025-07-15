@@ -278,6 +278,7 @@ func serverStreamWithContext(ctx context.Context) grpc.ServerStream {
 
 type serverStream struct {
 	grpc.ServerStream
+
 	context context.Context
 }
 
